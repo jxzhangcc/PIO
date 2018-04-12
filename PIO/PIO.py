@@ -2,9 +2,9 @@ import os, sys
 import re
 import numpy as np
 from math import sqrt
-from parse49 import parse_49
-from paraparser.indexparser import parse_index, rev_parse_index
 from numpy.linalg import svd, eigh
+from paraparser.indexparser import parse_index, rev_parse_index
+from fileparser.parse49 import parse_49
 from filegenerator.genfchk import quicksave
 
 tol = 1e-6
