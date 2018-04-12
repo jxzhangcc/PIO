@@ -5,7 +5,7 @@ Requirement
 ---
 - Gaussian 09
 - NBO 6.0
-- Python 2.7.12
+- Python 2.7
 - Numpy 1.13.1
 
 The combination here has been well-tested. Other versions are not guaranteed to work but are welcomed to test.
