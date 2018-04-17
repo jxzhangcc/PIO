@@ -1,3 +1,6 @@
+PIO V1.0
+Original published version honorably delivered by Acid&Francium (with a blast).
+
 Fragment A: 1-4 (Orbitals: 1-21)
 Fragment B: 5-8 (Orbitals: 22-42)
         Fragment A                Fragment B        

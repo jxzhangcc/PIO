@@ -1,4 +1,3 @@
-print 'Parse FChk'
 import os
 import sys
 import re

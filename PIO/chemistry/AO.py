@@ -1,4 +1,3 @@
-print 'Chemistry AO'
 class AtomicOrbital(object):
     Llabels = ['s', 'p', 'd', 'f']
     def __init__(self, center, label):

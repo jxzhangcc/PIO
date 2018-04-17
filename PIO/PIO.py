@@ -1,4 +1,3 @@
-print 'PIO'
 import os, sys
 import re
 import numpy as np
@@ -7,6 +6,9 @@ from numpy.linalg import svd, eigh
 from paraparser.indexparser import parse_index, rev_parse_index
 from fileparser.parse49 import parse_49
 from filegenerator.genfchk import quicksave
+
+VERSION = 'V1.0'
+VERSIONTEXT = 'Original published version honorably delivered by Acid&Francium (with a blast).\n'
 
 tol = 1e-6
 
@@ -144,6 +146,8 @@ def saveTxt(data):
         
     with open(os.path.join(os.path.split(data['srcfile'])[0], 
         data['title']+'_pio.txt'), 'w') as f:
+        f.write('PIO %s\n' % VERSION)
+        f.write('%s\n' % VERSIONTEXT)
         f.write('Fragment A: %s (Orbitals: %s)\n' % (rev_parse_index(atoms1), rev_parse_index(oids1+1)))
         f.write('Fragment B: %s (Orbitals: %s)\n' % (rev_parse_index(atoms2), rev_parse_index(oids2+1)))
         f.write('Fragment A'.center(26))
