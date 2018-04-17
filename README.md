@@ -76,11 +76,3 @@ Related publication
 TODO
 ---
 - [ ] Upload the code
-
-Contact
----
-*jzhangbm@connect.ust.hk*
-
-*fksheong@connect.ust.hk*
-
-*chzlin@ust.hk*
