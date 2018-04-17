@@ -1,3 +1,4 @@
+print 'Index parser'
 import re
 from numpy import int32, int64
 
