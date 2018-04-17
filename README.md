@@ -77,7 +77,7 @@ TODO
 ---
 - [ ] Upload the code
 
-Disclaiment
+Disclaimer
 ---
 Copyright (c) 2018 jxzhangcc and fksheong
 All rights reserved.
