@@ -71,7 +71,7 @@ Tutorial
 
 Related publication
 ---
-*Coming soon*
+DOI:10.1002/chem.201801220
 
 TODO
 ---
