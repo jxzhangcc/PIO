@@ -38,6 +38,11 @@ Tutorial
     The following NBO keywords should be specified in the NBO analysis:
     
         $NBO AONAO=W49 FNAO=W49 DMNAO=W49 SKIPBO $END
+   
+    **Running the NBO analysis**         
+    Run the NBO analysis using the following command (replace FILENAME with your own file name, and note .47 should not be included):
+    
+        gennbo FILENAME
     
     **Output**
     - *FILENAME.nbo*
