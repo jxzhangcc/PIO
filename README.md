@@ -49,6 +49,7 @@ Tutorial
         ordinary NBO output file (if run by an external NBO package)
     - *FILENAME.49*
         extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available
+        
         only appear if the above mentioned NBO keywords have been specified properly
 
 3. Run PIO analysis
