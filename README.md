@@ -29,7 +29,7 @@ Tutorial
 
 2. Run an NBO analysis
 
-    Run a NBO analysis on the system of interest. Only analysis done by an external NBO package has been tested and is introduced here.
+    Run a NBO analysis on the system of interest. The test result is done by an external NBO package. Usage of NBO3.0 that is built-in in gaussian 09 is similar as long as proper NBO keywords have specified in the gaussian input file.
     
     **Input**
     - *FILENAME.47*
@@ -49,6 +49,7 @@ Tutorial
         ordinary NBO output file (if run by an external NBO package)
     - *FILENAME.49*
         extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available
+        only appear if the above mentioned NBO keywords have been specified properly
 
 3. Run PIO analysis
 
@@ -64,15 +65,17 @@ Tutorial
     
         1,2,3,4 5-8
     
-    Two groups of atom IDs should be input here separated by a space. Numbers in each group are separated by a comma. Hyphen is supported for sequential numbers. Atom numbering starts from 1.
+    Two groups of atom IDs should be input here separated by a space. Numbers in each group are separated by a comma. Hyphen is supported for sequential numbers. Atom numbering starts from 1. Complete fragmentation is always recommended (i.e. the specified two groups cover all the atoms present in the system). Incomplete fragmentation will lead to absence of mathematical elegance but is still meaningful if you really want to do it.
 
     **Output**
     - *FILENAME_pio.txt*
         PIO log file, containing basic information of the PIOs of the system subject to the input fragmentation
     - *FILENAME_pio.FChk*
-        GaussView FormCheck file, for orbital visualization using GaussView
+        Gaussian FormCheck file containing PIOs labeled as in the txt file, could be visualized by GaussView and other compatable orbital visualization softwares
+    - *FILENAME_pimo.FChk*
+        A similar Gaussian FormCheck file containing PIMOs whose ordering is same as that of PIOs
     - *FILENAME_pio.raw*
-        numpy-formatted raw data file, for debugging purpose
+        numpy-formatted raw data file for debugging or advanced user
 
 Related publication
 ---
@@ -80,7 +83,8 @@ DOI:10.1002/chem.201801220
 
 TODO
 ---
-- [ ] Upload the code
+- [ ] Upgrade the code to make it compatable with spin-polarized systems (coming soon)
+- [ ] Transplant to python 3
 
 Disclaimer
 ---
