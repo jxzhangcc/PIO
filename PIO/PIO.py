@@ -7,16 +7,26 @@ from paraparser.indexparser import parse_index, rev_parse_index
 from fileparser.parse49 import parse_49
 from filegenerator.genfchk import quicksave
 
-VERSION = 'V1.0'
-VERSIONTEXT = 'Original published version honorably delivered by Acid&Francium (with a blast).\n'
+VERSION = 'V3.0'
+VERSIONTEXT = 'Original published version honorably delivered by Acid&Francium (with a blast).\nRevised on 21 May 2019 by Acid.\n'
 
 tol = 1e-6
 
-def genPIO(fn49, fragmentation=None, title=''):
+def myeigh(mat, rev=False):
+    evals, evecs = eigh(mat)
+    evecs = evecs.T
+    if rev:
+        order = evals.argsort()[::-1]
+    else:
+        order = evals.argsort()
+    evals = evals[order]
+    evecs = evecs[order]
+    return evals, evecs
+
+def genPIO(fn49, fragmentation=None):
     # input
     data = parse_49(fn49)
-    if not title:
-        title = data['title']
+    title = data['title']
     naoao = data['NAOAO']
     dmnao = data['DNAO']
     try:
@@ -68,11 +78,36 @@ def genPIO(fn49, fragmentation=None, title=''):
     pionao = np.eye(dim)
     pionao[np.array(oids1)[:,None],oids1] = U.T
     pionao[np.array(oids2)[:,None],oids2] = V
-    
+    if len(oids1) == len(oids2):
+        pass
+    else:
+        if len(oids1) > len(oids2):
+            nullspace = np.array(oids1)[len(oids2):]
+        else:
+            nullspace = np.array(oids2)[len(oids1):]
+        print nullspace
+        dm = pionao.dot(dmnao).dot(pionao.T)
+        evals, evecs = myeigh(dm[nullspace[:,None],nullspace], rev=True)
+        pionao[nullspace] = evecs.dot(pionao[nullspace])
+        try:
+            fm = pionao.dot(fmnao).dot(pionao.T)
+            null2 = nullspace[abs(evals-2)<tol]
+            null0 = nullspace[abs(evals-0)<tol]
+            print null2
+            evals, evecs = myeigh(fm[null2[:,None],null2])
+            print evals
+            pionao[null2] = evecs.dot(pionao[null2])
+            print null0
+            evals, evecs = myeigh(fm[null0[:,None],null0])
+            print evals
+            pionao[null0] = evecs.dot(pionao[null0])
+        except NameError:
+            pass
+   
     # output
     d = dict()
     d['srcfile'] = fn49
-    d['title'] = title
+    d['title'] = os.path.splitext(os.path.split(fn49)[1])[0] if title == 'Title Card Required' else title
     d['dim'] = dim
     d['fragments'] = (sorted(set([naolabels[orb].center for orb in oids1])), 
         sorted(set([naolabels[orb].center for orb in oids2])))
@@ -85,7 +120,22 @@ def genPIO(fn49, fragmentation=None, title=''):
         d['FPIO'] = pionao.dot(fmnao).dot(pionao.T)
     except NameError:
         pass
-    
+
+    dm = d['DPIO']
+    pimonao = np.copy(pionao)
+    for oid1, oid2 in zip(oids1, oids2):
+        D = dm[np.array([oid1, oid2])[:,None],[oid1,oid2]]
+        evals, evecs = myeigh(D,rev=True)
+        # if abs(vals[0] - vals[1]) <= tol:
+            # vecs = eigh(F)[1]
+        pimonao[[oid1,oid2]] = evecs.dot(pionao[[oid1,oid2]])
+    d['PIMOAO'] = pimonao.dot(naoao)
+    d['DPIMO'] = pimonao.dot(dmnao).dot(pimonao.T)
+    try:
+        d['FPIMO'] = pimonao.dot(fmnao).dot(pimonao.T)
+    except NameError:
+        pass
+
     return d
 
 def saveRawData(data):
@@ -168,55 +218,23 @@ def saveFChk(data, mfn):
     pioao = data['PIOAO']
     quicksave(mfn, pioao, data.get('FPIO', np.zeros(pioao.shape[0])), 
         suffix='_pio', overwrite=True)
+    pimoao = data['PIMOAO']
+    quicksave(mfn, pimoao, data.get('FPIMO', np.zeros(pimoao.shape[0])), 
+        suffix='_pimo', overwrite=True)
 
 def saveAll(data, mfn):
     saveRawData(data)
     saveTxt(data)
     saveFChk(data, mfn)
 
-def test():
-    data = genPIO('examples\H2OE.49', ' '.join(sys.argv[1:]))
-    saveRawData(data)
-    saveTxt(data)
-    saveFChk(data, 'examples\h2o.FChk')
-
 def main():
     fragmentation = ' '.join(sys.argv[2:4]) or None
     ffchk = sys.argv[1]
     f49 = os.path.splitext(ffchk)[0].upper() + '.49'
-    data = genPIO(f49, fragmentation, title=os.path.splitext(ffchk)[0])
+    data = genPIO(f49, fragmentation)
     saveAll(data, ffchk)
 
-# def multi():
-    # dirs = [dir for dir in sys.argv[1:] if os.path.isdir(dir)]
-    # fs = [f for f in sys.argv[1:] if os.path.isfile(f) and isfchk(f)]
-    # UIflag = '-i' in sys.argv[1:]
-
-    # if not dirs and not fs:
-        # dirs = ['.']
-    
-    # for dir in dirs:
-        # fs.extend([os.path.join(dir, f) for f in os.listdir(dir) if isfchk(f) and 'pio' not in f])
-    
-    # print 'Files to analyze:', fs
-    
-    # prompt = '\n$ Please input the atom ID of two fragments: '
-    # command = raw_input(prompt)
-    
-    # for f in fs:
-        # main(f, fragmentation = command, UI = UIflag)
-
 if __name__ == '__main__':
-    # fs = [f for f in sys.argv[1:] if os.path.isfile(f) and isfchk(f)]
-    # if len(fs) == 1:
-        # mfn = fs[0]
-    # elif len(fs) < 1:
-        # mfn = raw_input('Please input the formcheck filename: ')
-    # else:
-        # raise Exception('Too many files. Program confused.')
-    # main(mfn)
-    
-    # test()
     main()
-    # multi()
+
 
