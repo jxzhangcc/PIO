@@ -29,7 +29,7 @@ Tutorial
 
 2. Run an NBO analysis
 
-    Run a NBO analysis on the system of interest. The test result is done by an external NBO package. Usage of NBO3.0 that is built-in in gaussian 09 is similar as long as proper NBO keywords have specified in the gaussian input file.
+    Run a NBO analysis on the system of interest. The test result is done by an external NBO package. Usage of NBO 3.0 (which is built-in in Gaussian 09) is not recommended but is allowed as long as proper NBO keywords are specified in the gaussian input file (in this case no .nbo file will be generated but a .49 file will still be generated for this PIO code to read).
     
     **Input**
     - *FILENAME.47*
@@ -48,9 +48,7 @@ Tutorial
     - *FILENAME.nbo*
         ordinary NBO output file (if run by an external NBO package)
     - *FILENAME.49*
-        extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available
-        
-        only appear if the above mentioned NBO keywords have been specified properly
+        extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available; only appear if the above mentioned NBO keywords have been specified properly
 
 3. Run PIO analysis
 
