@@ -1,0 +1,16 @@
+#! /bin/bash
+suffix='.47'
+
+for filename in $@; do
+  if [[ $filename == *$suffix ]]
+  then 
+    # echo ${filename%$suffix*}
+    sed -i -r 's/\$NBO.+\$END/\$NBO AONAO=W33 FNAO=W61 DMNAO=W71 BNDIDX SKIPBO \$END/g' $filename
+    # /bin/tcsh /home/share/chzlin/nbo6/gennbo ${filename%$suffix*}
+    /PROGRAMS/nbo6/gennbo.fg.sh ${filename}
+    cat ${filename%.*}.33 ${filename%.*}.61 ${filename%.*}.71 > ${filename%.*}.49
+    rm -f ${filename%.*}.33 ${filename%.*}.61 ${filename%.*}.71
+  else
+    echo "$filename is not $suffix file."
+  fi
+done

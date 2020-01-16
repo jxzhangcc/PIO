@@ -1,0 +1,13 @@
+Version V4.0
+
+New features:
+1. PIO, PIMO, PISO, PISMO are all available
+2. Fixed bugs:
+	PISO energy unavailable
+3. New features:
+	Contribution of PISO are normalized to one, instead of normalized separately for each spin
+	Total interactions are printed in log, in addition to alpha/beta total ixn in case of PISO
+	PIOs are labeled with PBI instead of energy in fchk
+	Phases of PIMOs are corrected
+
+
