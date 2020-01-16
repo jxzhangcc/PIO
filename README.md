@@ -6,7 +6,7 @@ Requirement
 - Gaussian 09
 - NBO 6.0
 - Python 2.7
-- Numpy 1.13.1
+- Numpy 1.14.1
 
 The combination here has been well-tested. Other versions are not guaranteed to work but are welcomed to test.
 
@@ -62,7 +62,7 @@ Tutorial
     
     **Input:**
     
-        1,2,3,4 5-8
+        1-5,8,13 6-7,9-12
     
     Two groups of atom IDs should be input here separated by a space. Numbers in each group are separated by a comma. Hyphen is supported for sequential numbers. Atom numbering starts from 1. Complete fragmentation is always recommended (i.e. the specified two groups cover all the atoms present in the system). Incomplete fragmentation will lead to absence of mathematical elegance but is still meaningful if you really want to do it.
 
@@ -76,13 +76,16 @@ Tutorial
     - *FILENAME_pio.raw*
         numpy-formatted raw data file for debugging or advanced user
 
+Update at Jan 16, 2020
+---
+Principal Interacting Spin Orbital (PISO) analysis now available for spin-polarized systems. The usage is the same as above.
+
 Related publication
 ---
 DOI:10.1002/chem.201801220
 
 TODO
 ---
-- [ ] Upgrade the code to make it compatable with spin-polarized systems (coming soon)
 - [ ] Transplant to python 3
 
 Disclaimer
