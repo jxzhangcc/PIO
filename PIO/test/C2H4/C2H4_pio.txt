@@ -1,0 +1,14 @@
+PIO V4.0
+Original published version honorably delivered by Acid&Francium (with a blast).
+Revised on 16 Jan 2020 by Acid.
+
+Fragment A: 1-5 (Orbitals: 1-24)
+Fragment B: 6 (Orbitals: 25-26)
+Total interaction: 0.949001
+
+        Fragment A                Fragment B        
+   Orb     Pop         E        Orb     Pop         E         Ixn      Contrib%     Cum%      IE         EB         EA        PopB       PopA       RIE   
+    1     1.22946   -0.10827    25     0.77054    0.12891    0.94735   99.82576    99.83   -0.50302   -0.50649    0.52713    2.00000    0.00000    0.00000
+    2     1.99917   -0.53655    26     0.00083    0.60805    0.00165    0.17424   100.00   -0.02329   -0.53702    0.60852    2.00000   -0.00000    0.00000
+
+

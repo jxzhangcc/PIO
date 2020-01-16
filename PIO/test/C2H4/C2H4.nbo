@@ -1,0 +1,144 @@
+
+ *********************************** NBO 6.0 ***********************************
+             N A T U R A L   A T O M I C   O R B I T A L   A N D
+          N A T U R A L   B O N D   O R B I T A L   A N A L Y S I S
+ **************************** Zhenyang Lin (100644) ****************************
+  (c) Copyright 1996-2018 Board of Regents of the University of Wisconsin System
+      on behalf of the Theoretical Chemistry Institute.  All rights reserved.
+
+          Cite this program as:
+
+          NBO 6.0.  E. D. Glendening, J. K. Badenhoop, A. E. Reed,
+          J. E. Carpenter, J. A. Bohmann, C. M. Morales, C. R. Landis,
+          and F. Weinhold (Theoretical Chemistry Institute, University
+          of Wisconsin, Madison, WI, 2013); http://nbo6.chem.wisc.edu/
+
+       /AONAO  / : Write the AO to NAO transformation to lfn33
+       /DMNAO  / : Write the NAO density matrix to lfn71
+       /FNAO   / : Write the NAO Fock matrix to lfn61
+       /BNDIDX / : Print bond indices based on the NAO density matrix
+
+ Filename set to C2H4
+
+ Job title:  C2H4
+
+
+ Atom distance matrix: (Angstroms)
+
+     Atom    1       2       3       4       5       6
+     ---- ------  ------  ------  ------  ------  ------
+   1.  C  0.0000  1.0700  1.0700  1.3552  2.1075  2.1039
+   2.  H  1.0700  0.0000  1.8522  2.1075  3.0555  2.4270
+   3.  H  1.0700  1.8522  0.0000  2.1039  2.4270  3.0506
+   4.  C  1.3552  2.1075  2.1039  0.0000  1.0700  1.0700
+   5.  H  2.1075  3.0555  2.4270  1.0700  0.0000  1.8522
+   6.  H  2.1039  2.4270  3.0506  1.0700  1.8522  0.0000
+
+
+ NATURAL POPULATIONS:  Natural atomic orbital occupancies
+
+  NAO Atom No lang   Type(AO)    Occupancy      Energy
+ -------------------------------------------------------
+   1    C  1  s      Cor( 1s)     1.99998     -10.22551
+   2    C  1  s      Val( 2s)     1.08321      -0.15233
+   3    C  1  s      Ryd( 3s)     0.00101       0.90369
+   4    C  1  px     Val( 2p)     1.23206      -0.03885
+   5    C  1  px     Ryd( 3p)     0.00349       0.92886
+   6    C  1  py     Val( 2p)     1.13484      -0.01809
+   7    C  1  py     Ryd( 3p)     0.00300       0.54820
+   8    C  1  pz     Val( 2p)     0.99835      -0.11186
+   9    C  1  pz     Ryd( 3p)     0.00165       0.60362
+
+  10    H  2  s      Val( 1s)     0.77023       0.12901
+  11    H  2  s      Ryd( 2s)     0.00081       0.60718
+
+  12    H  3  s      Val( 1s)     0.77054       0.12891
+  13    H  3  s      Ryd( 2s)     0.00083       0.60805
+
+  14    C  4  s      Cor( 1s)     1.99998     -10.22551
+  15    C  4  s      Val( 2s)     1.08321      -0.15233
+  16    C  4  s      Ryd( 3s)     0.00101       0.90369
+  17    C  4  px     Val( 2p)     1.23206      -0.03885
+  18    C  4  px     Ryd( 3p)     0.00349       0.92886
+  19    C  4  py     Val( 2p)     1.13484      -0.01809
+  20    C  4  py     Ryd( 3p)     0.00300       0.54820
+  21    C  4  pz     Val( 2p)     0.99835      -0.11186
+  22    C  4  pz     Ryd( 3p)     0.00165       0.60362
+
+  23    H  5  s      Val( 1s)     0.77023       0.12901
+  24    H  5  s      Ryd( 2s)     0.00081       0.60718
+
+  25    H  6  s      Val( 1s)     0.77054       0.12891
+  26    H  6  s      Ryd( 2s)     0.00083       0.60805
+
+
+ Summary of Natural Population Analysis:
+
+                                     Natural Population
+             Natural    ---------------------------------------------
+  Atom No    Charge        Core      Valence    Rydberg      Total
+ --------------------------------------------------------------------
+    C  1   -0.45759      1.99998     4.44846    0.00915     6.45759
+    H  2    0.22896      0.00000     0.77023    0.00081     0.77104
+    H  3    0.22863      0.00000     0.77054    0.00083     0.77137
+    C  4   -0.45759      1.99998     4.44846    0.00915     6.45759
+    H  5    0.22896      0.00000     0.77023    0.00081     0.77104
+    H  6    0.22863      0.00000     0.77054    0.00083     0.77137
+ ====================================================================
+ * Total *  0.00000      3.99996    11.97846    0.02157    16.00000
+
+                                 Natural Population
+ ---------------------------------------------------------
+   Core                       3.99996 ( 99.9991% of    4)
+   Valence                   11.97846 ( 99.8205% of   12)
+   Natural Minimal Basis     15.97843 ( 99.8652% of   16)
+   Natural Rydberg Basis      0.02157 (  0.1348% of   16)
+ ---------------------------------------------------------
+
+    Atom No         Natural Electron Configuration
+ ----------------------------------------------------------------------------
+      C  1      [core]2s( 1.08)2p( 3.37)3p( 0.01)
+      H  2            1s( 0.77)
+      H  3            1s( 0.77)
+      C  4      [core]2s( 1.08)2p( 3.37)3p( 0.01)
+      H  5            1s( 0.77)
+      H  6            1s( 0.77)
+
+
+ Wiberg bond index matrix in the NAO basis:
+
+     Atom    1       2       3       4       5       6
+     ---- ------  ------  ------  ------  ------  ------
+   1.  C  0.0000  0.9290  0.9291  2.0315  0.0046  0.0046
+   2.  H  0.9290  0.0000  0.0002  0.0046  0.0128  0.0023
+   3.  H  0.9291  0.0002  0.0000  0.0046  0.0023  0.0129
+   4.  C  2.0315  0.0046  0.0046  0.0000  0.9290  0.9291
+   5.  H  0.0046  0.0128  0.0023  0.9290  0.0000  0.0002
+   6.  H  0.0046  0.0023  0.0129  0.9291  0.0002  0.0000
+
+
+ Wiberg bond index, Totals by atom:
+
+     Atom    1
+     ---- ------
+   1.  C  3.8987
+   2.  H  0.9488
+   3.  H  0.9490
+   4.  C  3.8987
+   5.  H  0.9488
+   6.  H  0.9490
+
+
+ NBI: Natural Binding Index (NCU strength parameters)
+
+     Atom    1       2       3       4       5       6
+     ---- ------  ------  ------  ------  ------  ------
+   1.  C  0.0000  0.9638  0.9639  1.4253  0.0680  0.0679
+   2.  H  0.9638  0.0000  0.0125  0.0680  0.1130  0.0480
+   3.  H  0.9639  0.0125  0.0000  0.0679  0.0480  0.1135
+   4.  C  1.4253  0.0680  0.0679  0.0000  0.9638  0.9639
+   5.  H  0.0680  0.1130  0.0480  0.9638  0.0000  0.0125
+   6.  H  0.0679  0.0480  0.1135  0.9639  0.0125  0.0000
+
+ Maximum scratch memory used by NBO was 40000 words (0.31 MB)
+ Maximum scratch memory used by GENNBO was 1359 words (0.01 MB)
