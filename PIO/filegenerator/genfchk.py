@@ -31,12 +31,14 @@ def gen_fchk(mfn, data, ofn='', title=None, suffix='_rlo', overwrite=False):
         for c in data['coeff']:
             assert c.shape == (dim_nmo, dim_bs)
     elif dim_nmo < dim_mo:
-        for spin, e in enumerate(data['energy']):
-            data['energy'][spin] = np.append(e, np.zeros(dim_mo - dim_nmo), axis = 0)
-            assert data['energy'][spin].shape == (dim_mo,)
-        for spin, c in enumerate(data['coeff']):
-            data['coeff'][spin] = np.append(c, np.zeros((dim_mo - dim_nmo, dim_bs)), axis = 0)
-            assert data['coeff'][spin].shape == (dim_mo, dim_bs)
+        # for spin, e in enumerate(data['energy']):
+            # data['energy'][spin] = np.append(e, np.zeros(dim_mo - dim_nmo), axis = 0)
+            # assert data['energy'][spin].shape == (dim_mo,)
+        data['energy'] = [np.append(e, np.zeros(dim_mo - dim_nmo), axis=0) for spin, e in enumerate(data['energy'])]
+        # for spin, c in enumerate(data['coeff']):
+            # data['coeff'][spin] = np.append(c, np.zeros((dim_mo - dim_nmo, dim_bs)), axis = 0)
+            # assert data['coeff'][spin].shape == (dim_mo, dim_bs)
+        data['coeff'] = [np.append(c, np.zeros((dim_mo - dim_nmo, dim_bs)), axis=0) for spin, c in enumerate(data['coeff'])]
         dim_nmo = dim_mo
     else:
         # raise AssertionError('Number of new orbitals exceeds number of original orbitals')
@@ -104,8 +106,7 @@ def quicksave(mfn, xoao, fmxo, suffix='_rlo', overwrite=False):
         else:
             raise UserWarning('Invalid shape of fock matrix')
         assert energies.shape[1] == xoao.shape[1]
-        assert energies.shape[0] == 2
-        assert xoao.shape[0] == 2
+        assert energies.shape[0] == xoao.shape[0]
         data = {'energy': energies, 
                 'coeff': xoao, 
                 'dim': xoao.shape[1:]}
