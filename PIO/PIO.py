@@ -147,6 +147,7 @@ def genPIO(dmnao, oids1, oids2, fmnao=None, tol=1e-6, silent=False):
             except NameError:
                 pass
 
+        pimonao[spin] = pionao[spin]
         for oid1, oid2 in zip(oids1, oids2)[:nep]:
             D = dmpio[[oid1, oid2]][:,[oid1,oid2]]
             evals, evecs = myeigh(D,rev=True)
