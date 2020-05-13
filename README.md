@@ -50,6 +50,8 @@ Tutorial
     - *FILENAME.49*
         extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available; only appear if the above mentioned NBO keywords have been specified properly
 
+    A bash script "genpionbos" is attached with the program to automatically modify the keywords in .47 file and then generate the .49 file by calling the NBO program. Note that the PIO program cannot understand an integrated .49 file in the case of open-shell systems. Therefore separate files are generated via "AONAO=W33 FNAO=W61 DMNAO=W71" in the genpionbos script. This is also suggested for users that do not use the genpionbos script.
+
 3. Run PIO analysis
 
     We now run PIO analysis with the following command. Note that FILENAME.49 must exist with the same name as FILENAME.FChk.
@@ -73,7 +75,7 @@ Tutorial
         Gaussian FormCheck file containing PIOs labeled as in the txt file, could be visualized by GaussView and other compatable orbital visualization softwares
     - *FILENAME_pimo.FChk*
         A similar Gaussian FormCheck file containing PIMOs whose ordering is same as that of PIOs
-    - *FILENAME_pio.raw*
+    - *FILENAME_pio.raw* (discarded in latest PIO version)
         numpy-formatted raw data file for debugging or advanced user
 
 Update at Jan 16, 2020
