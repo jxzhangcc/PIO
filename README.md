@@ -3,12 +3,17 @@ Principal Interacting Orbital
 
 Requirement
 ---
-- Gaussian 09
-- NBO 6.0
+This manual works for the following combinations.
 - Python 2.7
 - Numpy 1.14.1
+- Gaussian 09 & 16
+- NBO 6.0
 
-The combination here has been well-tested. Other versions are not guaranteed to work but are welcomed to test.
+- For Python 3 users, please see https://github.com/jxzhangcc/PIO-py3.
+- For NBO 3.0 users (the NBO built in Gaussian), please see the following link for a slightly revised guideline.
+    `
+    https://mp.weixin.qq.com/s?__biz=MzU5NDYxNjc5Ng==&mid=2247485938&idx=1&sn=addcb81d6a9caed028a9ab86e336847d&chksm=fe7fc141c9084857858ebeb9988bd73c70fd631f354a53aeb7768fcd4c6df9f890de7539d583&mpshare=1&scene=1&srcid=&sharer_sharetime=1589122912458&sharer_shareid=f14b465eb222f6bb34657e2c0fafe383&key=64daf1adc09d7c6ecdf51441f0e0e0081ff30416a8c76cafc75ab07809a89ccb0e3a0fde164cf3daa101192f723f9349e88e6622f494e3da3870bf9eaebe22bf9583324d7112cf0072a7c78f482c98d9&ascene=1&uin=MTY5ODAzMzEyNQ%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AdPzWFyVBDaa5HawSncSSzA%3D&pass_ticket=CJnCOXQ4GY3GwKDSPl0mmbvH12dznP%2F%2Bj30sXI1%2BLh1L4wzPIu4fEYHNwnZHTc2M)100
+    `
 
 Tutorial
 ---
@@ -89,12 +94,6 @@ Original method of PIO: doi.org/10.1002/chem.201801220
 Extension to spin-polarized systems: doi.org/10.1039/D0CP00127A
 
 A recent review on PIO: doi.org/10.1002/wcms.1469
-
-TODO
----
-- [ ] Transplant to python 3
-- [ ] Support on built-in NBO3.0 in Gaussian 
-(You may refer to the following link for temporary use: https://mp.weixin.qq.com/s?__biz=MzU5NDYxNjc5Ng==&mid=2247485938&idx=1&sn=addcb81d6a9caed028a9ab86e336847d&chksm=fe7fc141c9084857858ebeb9988bd73c70fd631f354a53aeb7768fcd4c6df9f890de7539d583&mpshare=1&scene=1&srcid=&sharer_sharetime=1589122912458&sharer_shareid=f14b465eb222f6bb34657e2c0fafe383&key=64daf1adc09d7c6ecdf51441f0e0e0081ff30416a8c76cafc75ab07809a89ccb0e3a0fde164cf3daa101192f723f9349e88e6622f494e3da3870bf9eaebe22bf9583324d7112cf0072a7c78f482c98d9&ascene=1&uin=MTY5ODAzMzEyNQ%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AdPzWFyVBDaa5HawSncSSzA%3D&pass_ticket=CJnCOXQ4GY3GwKDSPl0mmbvH12dznP%2F%2Bj30sXI1%2BLh1L4wzPIu4fEYHNwnZHTc2M)
 
 Disclaimer
 ---
