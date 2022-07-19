@@ -20,7 +20,7 @@ Tutorial
     **Input**
     - *FILENAME.gjf*
         `
-        # ... pop=nboread
+        \# ... pop=nboread
         ...
          $nbo archive file=FILENAME $end
         `
@@ -65,7 +65,7 @@ Tutorial
     **Input**
     - *FILENAME.gjf*
         `
-        # ... pop=nboread
+        \# ... pop=nboread
         ...
          $nbo archive file=FILENAME AONAO=W49 FNAO=W49 DMNAO=W49 SKIPBO $end
         `
