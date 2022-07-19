@@ -7,13 +7,9 @@ This manual works for the following combinations.
 - Python 2.7
 - Numpy 1.14.1
 - Gaussian 09 & 16
-- NBO 6.0
+- NBO 6.0 and above are recommended but NBO 3.0 is also compatible (see below for detailed discussions).
 
-- For Python 3 users, please see https://github.com/jxzhangcc/PIO-py3.
-- For NBO 3.0 users (the NBO built in Gaussian), please see the following link for a slightly revised guideline.
-    `
-    https://mp.weixin.qq.com/s?__biz=MzU5NDYxNjc5Ng==&mid=2247485938&idx=1&sn=addcb81d6a9caed028a9ab86e336847d&chksm=fe7fc141c9084857858ebeb9988bd73c70fd631f354a53aeb7768fcd4c6df9f890de7539d583&mpshare=1&scene=1&srcid=&sharer_sharetime=1589122912458&sharer_shareid=f14b465eb222f6bb34657e2c0fafe383&key=64daf1adc09d7c6ecdf51441f0e0e0081ff30416a8c76cafc75ab07809a89ccb0e3a0fde164cf3daa101192f723f9349e88e6622f494e3da3870bf9eaebe22bf9583324d7112cf0072a7c78f482c98d9&ascene=1&uin=MTY5ODAzMzEyNQ%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AdPzWFyVBDaa5HawSncSSzA%3D&pass_ticket=CJnCOXQ4GY3GwKDSPl0mmbvH12dznP%2F%2Bj30sXI1%2BLh1L4wzPIu4fEYHNwnZHTc2M)100
-    `
+For Python 3 users, please see https://github.com/jxzhangcc/PIO-py3.
 
 Tutorial
 ---
@@ -23,6 +19,11 @@ Tutorial
     
     **Input**
     - *FILENAME.gjf*
+        `
+        # ... pop=nboread
+        ...
+         $nbo archive file=FILENAME $end
+        `
     
     **Output**
     - *FILENAME.log*
@@ -34,7 +35,10 @@ Tutorial
 
 2. Run an NBO analysis
 
-    Run a NBO analysis on the system of interest. The test result is done by an external NBO package. Usage of NBO 3.0 (which is built-in in Gaussian 09) is not recommended but is allowed as long as proper NBO keywords are specified in the gaussian input file (in this case no .nbo file will be generated but a .49 file will still be generated for this PIO code to read).
+    Run a NBO analysis on the system of interest to obtain the NAO basis and corresponding density matrix.
+    
+    ***NBO 6.0 or 7.0***
+    For people who have bought individual NBO programs (such as NBO 6.0 or 7.0), modify the 47 file generated in the last step as following and run the NBO program.
     
     **Input**
     - *FILENAME.47*
@@ -51,25 +55,51 @@ Tutorial
     
     **Output**
     - *FILENAME.nbo*
-        ordinary NBO output file (if run by an external NBO package)
+        ordinary NBO output file
     - *FILENAME.49*
         extra output required for PIO analysis, containing NAO coefficients, density matrix in NAO basis, and Fock matrix in NAO basis if available; only appear if the above mentioned NBO keywords have been specified properly
+    
+    ***NBO 3.0 built in Gaussian***
+    For people who do not have an external NBO progam, the NBO 3.0 built in Gaussian is still compatible to complete PIO analysis. Just modify the Gaussian input file as following:
+    
+    **Input**
+    - *FILENAME.gjf*
+        `
+        # ... pop=nboread
+        ...
+         $nbo archive file=FILENAME AONAO=W49 FNAO=W49 DMNAO=W49 SKIPBO $end
+        `
+    
+    The NBO 3.0 built in Gaussian will read in the keywords and do the same as external NBO programs.
+    
+    **Output**
+    - *FILENAME.log*
+    - *FILENAME.49*
+    
+    However, the results with NBO 3.0 should be dealed with cautious because it is known that NBO 3.0 may produce weird results such as counter-intuitive negative charge for transition metals in coordination complexes.
+        
+    ***For spin-polarized systems***
+    No matter you use NBO 3.0 or 6.0, if you want to apply PIO analysis on spin-polarized systems (no matter restricted open-shell or unrestricted calculations), change the NBO keywords from "AONAO=W49 FNAO=W49 DMNAO=W49" to "AONAO=W33 FNAO=W61 DMNAO=W71" and run the following command to produce the required *FILENAME.49* file in correct format.
+    
+    **Command**
+        `cat FILENAME.33 FILENAME.61 FILENAME.71 > FILENAME.49`
 
-    A bash script "genpionbos" is attached with the program to automatically modify the keywords in .47 file and then generate the .49 file by calling the NBO program. Note that the PIO program cannot understand an integrated .49 file in the case of open-shell systems. Therefore separate files are generated via "AONAO=W33 FNAO=W61 DMNAO=W71" in the genpionbos script. This is also suggested for users that do not use the genpionbos script.
+    ***Note***
+    A bash script "genpionbos" is attached with the code that can perform all these steps for you by automatically modifying the keywords in .47 file and then generating the .49 file by calling the external NBO program. Make sure relevant paths are correctly set if you use this script. This script works for both open-shell and closed-shell species.
 
 3. Run PIO analysis
 
     We now run PIO analysis with the following command. Note that FILENAME.49 must exist with the same name as FILENAME.FChk.
     
-    **Command:**
+    **Command**
     
-        python PIO.py FILENAME.FChk
+        `python PIO.py FILENAME.FChk`
     
     The program will then request for a fragmentation as input to specify two groups of atoms
     
-    **Input:**
+    **Input**
     
-        1-5,8,13 6-7,9-12
+        `1-5,8,13 6-7,9-12`
     
     Two groups of atom IDs should be input here separated by a space. Numbers in each group are separated by a comma. Hyphen is supported for sequential numbers. Atom numbering starts from 1. Complete fragmentation is always recommended (i.e. the specified two groups cover all the atoms present in the system). Incomplete fragmentation will lead to absence of mathematical elegance but is still meaningful if you really want to do it.
 
